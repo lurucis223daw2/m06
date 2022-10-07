@@ -1,0 +1,115 @@
+!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="ca">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<title>Càlcul de velocitats mitjanes</title>
+	</head>
+	<body>    
+		<p><b><u>APLICACIÓ PEL CÀLCUL DE TEMPERATURES MITJANES</u></b></p>
+		<b>a) Introudeix les dades de temperatura en ºC:<br></b>
+				<table>
+			<tbody>
+				<tr>
+					<td>Mostra de Temperatura 1:</td>
+					<td><input id="1" type="text" name="temp[]" size="5" maxlength="6" value=0></td>
+					<td>Mostra de Temperatura 2:</td>
+					<td><input id="2" type="text" name="temp[]" size="5" maxlength="6" value=0></td>
+				</tr>
+				 <tr>
+					<td>Mostra de Temperatura 3:</td>
+					<td><input id="3" type="text" name="temp[]" size="5" maxlength="6" value=0></td>
+					<td>Mostra de Temperatura 4:</td>
+					<td><input id="4" type="text" name="temp[]" size="5" maxlength="6" value=0></td>
+   				<tr>
+					<td>Mostra de Temperatura 5:</td>
+					<td><input id="5" type="text" name="temp[]" size="5" maxlength="6" value=0></td>
+					<td>Mostra de Temperatura 6:</td>
+					<td><input id="6" type="text" name="temp[]" size="5" maxlength="6" value=0></td>
+				 </tr>
+				 <tr>
+					<td>Mostra de Temperatura 7:</td>
+					<td><input id="7" type="text" name="temp[]" size="5" maxlength="6" value=0></td>
+					<td>Mostra de Temperatura 8:</td>
+					<td><input id="8" type="text" name="temp[]" size="5" maxlength="6" value=0></td>
+				 </tr>
+			</tbody>
+		</table>
+		<br>
+        <b>b) Escull les unitats de temperatura del resultat:</b><br>
+        <input  id="Celsius" name="ut[]" value="celsius" type="checkbox" >Graus Celsius (ºC)<br>
+        <input id="Fahrenheit" name="ut[]" value="fahrenheit" type="checkbox">Graus Fahrenheit (ºF)<br>
+        <input id="Fahrenheit" name="ut[]" value="kelvins" type="checkbox" checked>Kelvins (K)<br>
+        <br>        
+        <button onclick='fCalculaMitjanes()'>Calcula mitjanes</button>
+		<button onclick="fNeteja(), fNeteja1()">Neteja dades</button>
+		<p><b>Resultats:</b></p>
+		<p id="resultats"></p>
+		<button onclick='fNetejaReinicia()'>Neteja resultats</button>
+		<script>
+			function fCalculaMitjanes() {
+				let mitjana=0;
+				let aTemp;
+				var input = document.getElementsByName("temp[]");
+					for (let i = 0; i < input.length; i++) {
+						aTemp = input[i];
+						mitjana=mitjana + parseFloat(aTemp.value);
+		
+					}
+				mitjana = mitjana/input.length;
+				//document.getElementById("resultats").innerHTML = `La mitjana de velocitats es ${mitjana}.`;
+
+				// DETECTAR CHECKS DELS CHECKBOXS
+				let sortida="";
+				let ccFahrenheit=0;
+				let ccKelvin=0;
+
+				let inputUt = document.getElementsByName("ut[]");
+				for (let a = 0; a < inputUt.length; a++) {
+					if (inputUt[a].checked) {
+						switch (inputUt[a].value) {
+							case "celsius":
+								sortida+=`La mitjana de velocitats en <b>Kilometres</b> és ${mitjana.toFixed(2)} celsius/h. <br>`;
+								break;
+							case "fahrenheit":
+								ccFahrenheit=(mitjana - 32) * 5/9;
+								sortida+=`La mitjana de velocitats en <b>Milles per hora</b> és ${ccFahrenheit.toFixed(2)} mph. <br>`;
+								break;
+							case "kelvins":
+                                ccKelvin=mitjana - 273;
+								sortida+=`La mitjana de velocitats en <b>Metres per segon</b> és ${ccKelvin.toFixed(2)} m/s. <br>`;
+								break;
+							default:
+								break;
+						}
+					}
+					document.getElementById("resultats").innerHTML = `${sortida}`;
+				}
+			}
+
+          function fNeteja() {
+            	document.getElementById('1').value = "0";
+            	document.getElementById('2').value = "0";
+            	document.getElementById('3').value = "0";
+            	document.getElementById('4').value = "0";
+				document.getElementById('5').value = "0";
+          		document.getElementById('6').value = "0";
+				document.getElementById('7').value = "0";
+				document.getElementById('8').value = "0";
+
+            	
+			}
+			function fNeteja1() {
+				document.getElementById("Celsius").checked = false;
+				document.getElementById("Fahrenheit").checked = false;
+				document.getElementById("Kelvins").checked = false;
+
+
+			}
+						
+			function fNetejaReinicia() {
+				document.getElementById("resultats").innerHTML = "";
+	
+			}
+		</script>   
+	</body>
+</html>
