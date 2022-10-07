@@ -68,15 +68,15 @@
 					if (inputUt[a].checked) {
 						switch (inputUt[a].value) {
 							case "celsius":
-								sortida+=`La mitjana de velocitats en <b>Kilometres</b> és ${mitjana.toFixed(2)} celsius/h. <br>`;
+								sortida+=`La mitjana de temperatura en <b>celsius</b> és ${mitjana.toFixed(2)}	º C. <br>`;
 								break;
 							case "fahrenheit":
 								ccFahrenheit=(mitjana - 32) * 5/9;
-								sortida+=`La mitjana de velocitats en <b>Milles per hora</b> és ${ccFahrenheit.toFixed(2)} mph. <br>`;
+								sortida+=`La mitjana de temperatura en <b>fahrenheit</b> és ${ccFahrenheit.toFixed(2)}  °F. <br>`;
 								break;
 							case "kelvins":
                                 ccKelvin=mitjana - 273;
-								sortida+=`La mitjana de velocitats en <b>Metres per segon</b> és ${ccKelvin.toFixed(2)} m/s. <br>`;
+								sortida+=`La mitjana de temperatura en <b>kelvins</b> és ${ccKelvin.toFixed(2)} ºK. <br>`;
 								break;
 							default:
 								break;
